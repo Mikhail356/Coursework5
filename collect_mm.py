@@ -1,3 +1,6 @@
+"""
+Collecting russian mass media in file mass_media.txt
+"""
 import bs4
 import requests
 st = requests.get(
