@@ -19,13 +19,15 @@ def process_sites(url, api_url, reg_expr):
                          'url': url+'*',
                          'limit': 3,
                          'output': 'json',
-                         'fl': 'url,filename,offset,length',
                          'filter': ['=status:200',
                                     '=language:rus' or '=language:rus,eng',
                                     ]
                      })
     records = [json.loads(line) for line in r.text.split('\n') if line]
     for record in records:
+        if 'No Captures found' in record['message']:
+            ans.append('No capture on cc for ' + url)
+            continue
         prefix_url = 'https://commoncrawl.s3.amazonaws.com/'
         data_url = prefix_url + record['filename']
         start_byte = int(record['offset'])
@@ -54,13 +56,16 @@ def process_sites_wrapper(i):
     with open('data/part_{}.txt'.format(i), 'w') as file:
         while not queue.empty():
             url = queue.get()
+            '''
             try:
                 record = process_sites(url, api_url, reg_expr)
             except Exception as e:
                 with lock:
                     print(url, e, file=sys.stderr)
-                record = 'skip ' + url
-            print(record, sep='\n', file=file)
+                record = 'skip ' + url'''
+            record = process_sites(url, api_url, reg_expr)
+            for string in record:
+                file.write(str(string)+'\n')
 
             # счетчик должен атомарно обновиться
             with lock:
@@ -73,8 +78,8 @@ if __name__ == '__main__':
     url.pop()
     queue = Queue()  # for collection urls on news websites
     for link in url:
-        queue.put(link)
+        queue.put(link+'*')
 
-    with Pool(processes=4) as pool, tqdm(total=queue.qsize()) as pbar:
+    with Pool(processes=1) as pool, tqdm(total=queue.qsize()) as pbar:
         lock = pbar.get_lock()
-        pool.map(process_sites_wrapper, range(pool._process))
+        pool.map(process_sites_wrapper, range(pool._processes))
