@@ -14,7 +14,6 @@ def parse(req=[], fio='Сергеев Александр Михайлович'):
     reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
         surname=fio[0], name=fio[1], patronymic=fio[2])
 
-    print(reg_expr)
     file = open('out.txt', 'w')
     for i in req:
         try:
