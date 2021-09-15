@@ -21,4 +21,4 @@ li.sort()
 print(len(li), li)
 with open('mass_media.txt', 'w') as file:
     for step in li:
-        file.write(step + '\n')
+        file.write(step + '*\n')

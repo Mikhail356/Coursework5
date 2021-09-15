@@ -18,10 +18,7 @@ def process_sites(url, api_url, reg_expr):
                      params={
                          'url': url+'*',
                          'limit': 3,
-                         'output': 'json',
-                         'filter': ['=status:200',
-                                    '=language:rus' or '=language:rus,eng',
-                                    ]
+                         'filter': '=status:200'
                      })
     records = [json.loads(line) for line in r.text.split('\n') if line]
     for record in records:
@@ -38,11 +35,10 @@ def process_sites(url, api_url, reg_expr):
         try:
             soap = bs4.BeautifulSoup(data.decode('utf-8'), 'html.parser')
             res = re.search('{}'.format(reg_expr), soap.text)
+            if res != None:
+                ans.append(url)
         except:
             ans.append('err_in_analyze ' + url)
-            continue
-        if res != None:
-            ans.append(url)
     return ans
 
 
@@ -78,8 +74,8 @@ if __name__ == '__main__':
     url.pop()
     queue = Queue()  # for collection urls on news websites
     for link in url:
-        queue.put(link+'*')
+        queue.put(link.strip())
 
-    with Pool(processes=1) as pool, tqdm(total=queue.qsize()) as pbar:
+    with Pool(processes=4) as pool, tqdm(total=queue.qsize()) as pbar:
         lock = pbar.get_lock()
         pool.map(process_sites_wrapper, range(pool._processes))
