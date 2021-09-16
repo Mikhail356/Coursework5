@@ -6,6 +6,7 @@ import re
 import sys
 import json
 import zlib
+import cdx_toolkit
 
 
 def parse(req=[], fio='Сергеев Александр Михайлович'):
@@ -31,12 +32,13 @@ def parse(req=[], fio='Сергеев Александр Михайлович'):
             print('skip '+i)
 
 
-def process_sites(url, api_url, reg_expr):
+def process_sites(url, api_url, reg_expr):  #
     ans = []
     r = requests.get(api_url,
                      params={
                          'url': url,
                          'output': 'json',
+                         'limit': 20,
                          'filter': '=status:200'
                      })
     records = [json.loads(line) for line in r.text.split('\n') if line]
@@ -52,7 +54,7 @@ def process_sites(url, api_url, reg_expr):
         headers = {'Range': f'bytes={start_byte}-{end_byte}'}
         r = requests.get(data_url, headers=headers)
         data = zlib.decompress(r.content, wbits=zlib.MAX_WBITS | 16)
-        print(data, r.text, sep='\n\n\n')
+        #print(data, r.text, sep='\n\n\n')
         try:
             soap = bs4.BeautifulSoup(data.decode('utf-8'), 'html.parser')
             res = re.search('{}'.format(reg_expr), soap.text)
@@ -64,12 +66,25 @@ def process_sites(url, api_url, reg_expr):
 
 
 if __name__ == '__main__':
-    index = requests.get('https://index.commoncrawl.org/collinfo.json').json()
-    api_url = index[0]['cdx-api']
-    fio = 'Сергеев Александр Михайлович'
-    fio = fio.split()
-    reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
-        surname=fio[0], name=fio[1], patronymic=fio[2])
-    url = 'http://1mediainvest.ru/*'
-    ans = process_sites(url, api_url, reg_expr)
-    print(ans)
+    url = 'https://ria.ru/*'
+    cdx = cdx_toolkit.CDXFetcher(source='cc')
+    objs = list(cdx.iter(url, from_ts='202008', to='202012',
+                         filter='=status:200'))
+    for obj in objs:
+        print(str(obj.data))
+    # [o.data for o in objs]
+    # for obj in objs:
+    #     html = obj.content
+    #     soup = bs4.BeautifulSoup(html, 'html.parser')
+    #     fio = 'Сергеев Александр Михайлович'
+    #     fio = fio.split() https://ria.ru/20200802/1575215918.html
+    #     reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
+    #         surname=fio[0], name=fio[1], patronymic=fio[2])
+    #     res = re.search('{}'.format(reg_expr), soup.text)
+    #     if res != None:
+    #         file = open('testout.txt', 'w')
+    #         file.writelines(soup.text)
+    #         file.writelines('\^*^/'*100)
+    #         file.close()
+    #     else:
+    #         print('skip ' + url)
