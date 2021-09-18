@@ -68,23 +68,19 @@ def process_sites(url, api_url, reg_expr):  #
 if __name__ == '__main__':
     url = 'https://ria.ru/*'
     cdx = cdx_toolkit.CDXFetcher(source='cc')
-    objs = list(cdx.iter(url, from_ts='202008', to='202012',
-                         filter='=status:200'))
-    for obj in objs:
-        print(str(obj.data))
-    # [o.data for o in objs]
-    # for obj in objs:
-    #     html = obj.content
-    #     soup = bs4.BeautifulSoup(html, 'html.parser')
-    #     fio = 'Сергеев Александр Михайлович'
-    #     fio = fio.split() https://ria.ru/20200802/1575215918.html
-    #     reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
-    #         surname=fio[0], name=fio[1], patronymic=fio[2])
-    #     res = re.search('{}'.format(reg_expr), soup.text)
-    #     if res != None:
-    #         file = open('testout.txt', 'w')
-    #         file.writelines(soup.text)
-    #         file.writelines('\^*^/'*100)
-    #         file.close()
-    #     else:
-    #         print('skip ' + url)
+    file = open('testout.txt', 'w')
+    for obj in cdx.iter(url, from_ts='202011', to='2020', limit=2,
+                        filter='=status:200'):
+        soup = bs4.BeautifulSoup(obj.content, 'html.parser')
+        fio = 'Сергеев Александр Михайлович'.split()
+        reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
+            surname=fio[0], name=fio[1], patronymic=fio[2])
+        res = re.search('{}'.format(reg_expr), soup.text)
+        if res != None:
+            file.writelines(
+                obj.data['url'] + '\ttimestamp = ' + obj.data['timestamp'] + '\n')
+            file.writelines(soup.text + '\n')
+        else:
+            print('skip ' + obj.data['url'] +
+                  '\ttimestamp = ' + obj.data['timestamp'])
+    file.close()
