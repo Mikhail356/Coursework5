@@ -20,12 +20,14 @@ def process_sites(url, reg_expr):
                        '\ttimestamp = ' + obj.data['timestamp'])
     return ans
 
+#    reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
+#        surname=fio[0], name=fio[1], patronymic=fio[2])
+
 
 def process_sites_wrapper(i):
     fio = 'Сергеев Александр Михайлович'
     fio = fio.split()
-    reg_expr = '({surname})|((({name[0]}|{name}).+)&(({patronymic[0]}|{patronymic}).+))'.format(
-        surname=fio[0], name=fio[1], patronymic=fio[2])
+    reg_expr = '{}'.format(fio[0])
     with open('data/part_{}.txt'.format(i), 'w') as file:
         while not queue.empty():
             url = queue.get()

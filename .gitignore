@@ -131,3 +131,4 @@ dmypy.json
 # My ignore
 data/
 *.txt
+*.sqlite3
