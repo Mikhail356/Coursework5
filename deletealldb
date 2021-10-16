@@ -1,0 +1,5 @@
+DROP TABLE queue;
+
+DROP TABLE content;
+
+DROP TABLE filtered;
