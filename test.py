@@ -18,7 +18,7 @@ async def complite(db: str) -> None:
             "SELECT COUNT(*) FROM queue WHERE load_started IS NOT NULL").fetchone()[0]
         pbar.update(cur_new_len-cur_len)
         cur_len = cur_new_len
-        await time.sleep(1)
+        time.sleep(1)
     con.close()
     return
 
@@ -40,8 +40,8 @@ async def get_raw_data(db: str) -> None:
         )
         con.commit()
         while(url):
-            for obj in await cdx.iter(url, from_ts='202011', to='2020', limit=2,
-                                      filter='=status:200'):
+            for obj in cdx.iter(url, from_ts='202011', to='2020', limit=2,
+                                filter='=status:200'):
                 cur.execute("INSERT INTO content(url, raw_cont) VALUES ({}, {}) WHERE".format(
                     obj['url'], obj.content))
             cur.execute(
