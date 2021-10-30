@@ -1,0 +1,24 @@
+DROP TABLE queue;
+
+DROP TABLE content;
+
+DROP TABLE filtered;
+
+CREATE TABLE queue(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT,
+    load_started DEFAULT NULL,
+    load_complete DEFAULT NULL
+);
+
+CREATE TABLE content(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT,
+    raw_cont TEXT
+);
+
+CREATE TABLE filtered(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT,
+    cont TEXT
+);
