@@ -132,3 +132,4 @@ dmypy.json
 data/
 *.txt
 *.sqlite3
+*.sql*
