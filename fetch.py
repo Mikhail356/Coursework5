@@ -1,7 +1,45 @@
 import sqlite3
 import cdx_toolkit
+import bs4
 from time import sleep
 from readability import Document
+from itertools import zip_longest
+
+
+def grouper(iterable, n, fillvalue=None):
+    "Collect data into non-overlapping fixed-length chunks or blocks"
+    # grouper('ABCDEFG', 3, 'x') —> ABC DEF Gxx
+    args = [iter(iterable)] * n
+    return zip_longest(*args, fillvalue=fillvalue)
+
+
+def save_batch(batch, id_, db):
+    while True:
+        try:
+            with sqlite3.connect(db) as connection:
+                cursor = connection.cursor()
+                for document in batch:
+                    try:
+                        cursor.execute(
+                            """INSERT INTO content(url, raw_cont) 
+                            VALUES (:url, :summary) """, document)
+                        cursor.execute("""UPDATE queue 
+                            SET load_complete = current_timestamp 
+                            WHERE id = ?""", (id_))
+                    except Exception as e:
+                        print(e, document['url'], document['summary'][:1_000],
+                              sep='\n\n\n')
+                        continue
+                connection.commit()
+                # size = cursor.execute("""
+                # SELECT page_count * page_size as size
+                # FROM pragma_page_count(), pragma_page_size()
+                # """).fetchone()
+                # print(f'{size/1048576} Mbyte')
+                break
+        except Exception as e:
+            print(e)
+            sleep(0.0001)
 
 
 def get_data(db: str) -> None:
@@ -26,38 +64,17 @@ def get_data(db: str) -> None:
         if not url:
             break
         id_ = url[0]
-        url = url[1]
-        doc = []
-        for ind, obj in enumerate(cdx.iter(url, from_ts='202011', to='2020',
-                                           filter=['=status:200'])):
-            doc.append((obj['url'], Document(obj.content)))
-            print(ind)
-            if ind % 100 == 0 and ind > 0:
-                con = sqlite3.connect(db)
-                cur = con.cursor()
-                while True:
-                    try:
-                        for i in doc:
-                            cur.execute(
-                                """INSERT INTO content(url, raw_cont) 
-                                VALUES (?, ?) 
-                                """, (i[0], i[1].summary()))
-                            cur.execute("""UPDATE queue 
-                                SET load_complete = current_timestamp 
-                                WHERE id = ?""", (id_))
-                        con.commit()
-                        size = cur.execute("""
-                        SELECT page_count * page_size as size 
-                        FROM pragma_page_count(), pragma_page_size()
-                        """).fetchone()
-                        print(f'{size/1048576} Mbyte')
-                        con.close()
-                        break
-                    except:
-                        sleep(0.0001)
-                    doc = []
-        if len(doc) % 100 != 0:
-            pass
+        url_ = url[1]
+        cdx_iterator = cdx.iter(url_, from_ts='202011', to='202012',
+                                filter=['=status:200'])
+        processed = ({"url": doc['url'],
+                      "summary":
+                      bs4.BeautifulSoup(
+                          Document(doc.content).summary(), 'html.parser')
+                      } for doc in cdx_iterator
+                     )
+        for batch in grouper(processed, 100):
+            save_batch(batch, id_, db)
     con.commit()
     con.close()
     return
