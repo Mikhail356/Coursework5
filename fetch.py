@@ -15,31 +15,31 @@ def grouper(iterable, n, fillvalue=None):
 
 def save_batch(batch, id_, db):
     while True:
-        try:
-            with sqlite3.connect(db) as connection:
-                cursor = connection.cursor()
-                for document in batch:
-                    try:
-                        cursor.execute(
-                            """INSERT INTO content(url, raw_cont) 
-                            VALUES (:url, :summary) """, document)
-                        cursor.execute("""UPDATE queue 
-                            SET load_complete = current_timestamp 
-                            WHERE id = ?""", (id_))
-                    except Exception as e:
-                        print(e, document['url'], document['summary'][:1_000],
-                              sep='\n\n\n')
-                        continue
-                connection.commit()
-                # size = cursor.execute("""
-                # SELECT page_count * page_size as size
-                # FROM pragma_page_count(), pragma_page_size()
-                # """).fetchone()
-                # print(f'{size/1048576} Mbyte')
-                break
-        except Exception as e:
-            print(e)
-            sleep(0.0001)
+        # try:
+        with sqlite3.connect(db) as connection:
+            cursor = connection.cursor()
+            for document in batch:
+                # try:
+                cursor.execute(
+                    """INSERT INTO content(url, raw_cont) 
+                    VALUES (:url, :summary) """, document)
+                # print(id_, type(id_))
+                cursor.execute("""UPDATE queue 
+                    SET load_complete = current_timestamp 
+                    WHERE id = ?""", (id_,))
+                # except Exception as e:
+                # print(document['url'], document['summary'][:10_000],
+                #   sep='\n\n\n')
+            connection.commit()
+            size = cursor.execute("""
+            SELECT page_count * page_size as size
+            FROM pragma_page_count(), pragma_page_size()
+            """).fetchone()
+            print(f'{size/1048576} Mbyte')
+            break
+        # except Exception as e:
+        #     print(e, id_)
+        #     sleep(0.0001)
 
 
 def get_data(db: str) -> None:
@@ -69,8 +69,8 @@ def get_data(db: str) -> None:
                                 filter=['=status:200'])
         processed = ({"url": doc['url'],
                       "summary":
-                      bs4.BeautifulSoup(
-                          Document(doc.content).summary(), 'html.parser')
+                      str(bs4.BeautifulSoup(
+                          Document(doc.content).summary(), 'html.parser').text)
                       } for doc in cdx_iterator
                      )
         for batch in grouper(processed, 100):

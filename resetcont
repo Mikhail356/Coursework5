@@ -1,6 +1,9 @@
 UPDATE queue
 SET load_started = NULL;
 
+UPDATE queue
+SET load_complete = NULL;
+
 DROP TABLE content;
 
 CREATE TABLE content(
