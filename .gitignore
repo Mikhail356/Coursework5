@@ -133,3 +133,4 @@ data/
 *.txt
 *.sqlite3
 *.sql*
+*.vscode/*

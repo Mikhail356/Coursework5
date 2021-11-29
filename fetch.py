@@ -7,7 +7,7 @@ from itertools import zip_longest
 
 
 def grouper(iterable, n, fillvalue=None):
-    "Collect data into non-overlapping fixed-length chunks or blocks"
+    """Collect data into non-overlapping fixed-length chunks or blocks"""
     # grouper('ABCDEFG', 3, 'x') —> ABC DEF Gxx
     args = [iter(iterable)] * n
     return zip_longest(*args, fillvalue=fillvalue)
@@ -20,14 +20,29 @@ def save_batch(batch, id_, db):
             for document in batch:
                 if isinstance(document, dict):
                     cursor.execute("""
-                        INSERT INTO content(url, raw_cont) 
+                        INSERT INTO content(url, raw_cont)
                         VALUES (:url, :summary)""", document)
                     cursor.execute("""
-                        UPDATE queue 
-                        SET load_complete = current_timestamp 
+                        UPDATE queue
+                        SET load_complete = current_timestamp
                         WHERE id = ?""", (id_,))
             connection.commit()
         break
+
+
+def get_summary(cdx_iterator):
+    """return dict with fields url, content or none"""
+    answer = dict()
+    try:
+        if len(cdx_iterator.content) > len('<html></html>'):
+            answer['url'] = cdx_iterator['url']
+            answer['summary'] = bs4.BeautifulSoup(
+                Document(cdx_iterator.content).summary(), 'lxml'
+            ).text
+    except Exception as error:
+        print(answer['url'], cdx_iterator.content, sep='\n')
+        return None
+    return answer
 
 
 def get_data(db: str) -> None:
@@ -37,8 +52,8 @@ def get_data(db: str) -> None:
         cursor = connection.cursor()
         url = cursor.execute(
             """
-            SELECT id, url FROM queue 
-            WHERE load_started IS NULL 
+            SELECT id, url FROM queue
+            WHERE load_started IS NULL
             LIMIT 1""").fetchone()
 
     while url:
@@ -53,7 +68,7 @@ def get_data(db: str) -> None:
                 break
             url = cursor.execute("""
                 UPDATE queue SET load_started = current_timestamp
-                FROM 
+                FROM
                 (SELECT id FROM queue WHERE load_started IS NULL LIMIT 1) free
                 WHERE queue.id = free.id
                 RETURNING queue.id, queue.url""").fetchone()
@@ -63,13 +78,13 @@ def get_data(db: str) -> None:
         id_ = url[0]
         url_ = url[1]
         cdx_iterator = cdx.iter(url_, from_ts='202011', to='202012',
-                                filter=['=status:200'])
-        processed = ({"url": str(doc['url']),
-                      "summary":
-                      str(bs4.BeautifulSoup(
-                          Document(doc.content).summary(), 'html.parser').text)
-                      } for doc in cdx_iterator
-                     )
+                                filter=['=status:200',
+                                        '=mime-detected:text/html', ])
+        processed = (
+            {"url": summary['url'],
+             "summary": summary['summary']
+             } for summary in map(get_summary, cdx_iterator) if summary
+        )
         for batch in grouper(processed, 100):
             save_batch(batch, id_, db)
 
