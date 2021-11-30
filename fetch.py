@@ -1,21 +1,26 @@
+"""Load text from CommonCrawl to content DATABASE by url in queue DATABASE"""
+
+from time import sleep
 import sqlite3
+from itertools import zip_longest
+from readability import Document
 import cdx_toolkit
 import bs4
-from time import sleep
-from readability import Document
-from itertools import zip_longest
+
+DATABASE = 'alldb.sqlite3'
 
 
-def grouper(iterable, n, fillvalue=None):
+def grouper(iterable, chunk_len, fillvalue=None):
     """Collect data into non-overlapping fixed-length chunks or blocks"""
     # grouper('ABCDEFG', 3, 'x') —> ABC DEF Gxx
-    args = [iter(iterable)] * n
+    args = [iter(iterable)] * chunk_len
     return zip_longest(*args, fillvalue=fillvalue)
 
 
-def save_batch(batch, id_, db):
+def save_batch(batch, id_):
+    """Uploads the finished data to the DATABASE content"""
     while True:
-        with sqlite3.connect(db) as connection:
+        with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
             for document in batch:
                 if isinstance(document, dict):
@@ -31,24 +36,32 @@ def save_batch(batch, id_, db):
 
 
 def get_summary(cdx_iterator):
-    """return dict with fields url, content or none"""
+    """
+    return dict = {url:..., content:...} for write into DATABASE content
+    or none
+    """
     answer = dict()
     try:
-        if len(cdx_iterator.content) > len('<html></html>'):
+        if cdx_iterator and len(cdx_iterator.content) > len('<html></html>'):
             answer['url'] = cdx_iterator['url']
             answer['summary'] = bs4.BeautifulSoup(
                 Document(cdx_iterator.content).summary(), 'lxml'
             ).text
     except Exception as error:
-        print(answer['url'], cdx_iterator.content, sep='\n')
+        if cdx_iterator:
+            print(1, cdx_iterator['url'], cdx_iterator.content, error,
+                  sep='\n')
+        else:
+            print(2, cdx_iterator, error)
         return None
     return answer
 
 
-def get_data(db: str) -> None:
+def get_data() -> None:
+    """Load data from common crawl and upload it to the content DATABASE"""
     url = ''
     cdx = cdx_toolkit.CDXFetcher(source='cc')
-    with sqlite3.connect(db) as connection:
+    with sqlite3.connect(DATABASE) as connection:
         cursor = connection.cursor()
         url = cursor.execute(
             """
@@ -57,7 +70,7 @@ def get_data(db: str) -> None:
             LIMIT 1""").fetchone()
 
     while url:
-        with sqlite3.connect(db) as connection:
+        with sqlite3.connect(DATABASE) as connection:
             cursor = connection.cursor()
             size = cursor.execute("""
                 SELECT page_count * page_size as size
@@ -75,8 +88,7 @@ def get_data(db: str) -> None:
             connection.commit()
         if not url:
             break
-        id_ = url[0]
-        url_ = url[1]
+        id_, url_ = url[0], url[1]
         cdx_iterator = cdx.iter(url_, from_ts='202011', to='202012',
                                 filter=['=status:200',
                                         '=mime-detected:text/html', ])
@@ -86,9 +98,8 @@ def get_data(db: str) -> None:
              } for summary in map(get_summary, cdx_iterator) if summary
         )
         for batch in grouper(processed, 100):
-            save_batch(batch, id_, db)
+            save_batch(batch, id_)
 
 
 if __name__ == '__main__':
-    db = 'alldb.sqlite3'
-    get_data(db)
+    get_data()
