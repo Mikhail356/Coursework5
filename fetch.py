@@ -37,23 +37,30 @@ def save_batch(batch, id_):
 
 def get_summary(cdx_iterator):
     """
-    return dict = {url:..., content:...} for write into DATABASE content
-    or none
+    return list of dict = {url:..., content:...} for write into DATABASE
+    content or empty list
     """
-    answer = dict()
-    try:
-        if cdx_iterator and len(cdx_iterator.content) > len('<html></html>'):
-            answer['url'] = cdx_iterator['url']
-            answer['summary'] = bs4.BeautifulSoup(
-                Document(cdx_iterator.content).summary(), 'lxml'
-            ).text
-    except Exception as error:
-        if cdx_iterator:
-            print(1, cdx_iterator['url'], cdx_iterator.content, error,
-                  sep='\n')
-        else:
-            print(2, cdx_iterator, error)
-        return None
+    answer = []
+    for iterator in cdx_iterator:
+        while True:
+            try:
+                if iterator and len(iterator.content) > len('<html></html>'):
+                    answer.append({'url': iterator['url'],
+                                   'summary': bs4.BeautifulSoup(
+                        Document(iterator.content).summary(), 'lxml').text})
+                break
+            except ConnectionError:
+                sleep(60)
+            except Exception as error:
+                if iterator['url']:
+                    print(1, iterator['url'], iterator.content, error,
+                          sep='\n')
+                elif iterator:
+                    print(1, 'not url', iterator,
+                          'not content',  error, sep='\n')
+                else:
+                    print(2, error)
+                break
     return answer
 
 
@@ -92,11 +99,7 @@ def get_data() -> None:
         cdx_iterator = cdx.iter(url_, from_ts='202011', to='202012',
                                 filter=['=status:200',
                                         '=mime-detected:text/html', ])
-        processed = (
-            {"url": summary['url'],
-             "summary": summary['summary']
-             } for summary in map(get_summary, cdx_iterator) if summary
-        )
+        processed = get_summary(cdx_iterator)
         for batch in grouper(processed, 100):
             save_batch(batch, id_)
 
