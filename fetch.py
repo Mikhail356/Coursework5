@@ -42,25 +42,22 @@ def get_summary(cdx_iterator):
     """
     answer = []
     for iterator in cdx_iterator:
-        while True:
-            try:
-                if iterator and len(iterator.content) > len('<html></html>'):
-                    answer.append({'url': iterator['url'],
-                                   'summary': bs4.BeautifulSoup(
-                        Document(iterator.content).summary(), 'lxml').text})
-                break
-            except ConnectionError:
-                sleep(60)
-            except Exception as error:
-                if iterator['url']:
-                    print(1, iterator['url'], iterator.content, error,
-                          sep='\n')
-                elif iterator:
-                    print(1, 'not url', iterator,
-                          'not content',  error, sep='\n')
-                else:
-                    print(2, error)
-                break
+        try:
+            if iterator and len(iterator.content) > len('<html></html>'):
+                answer.append({'url': iterator['url'],
+                               'summary': bs4.BeautifulSoup(
+                    Document(iterator.content).summary(), 'lxml').text})
+        except ConnectionError:
+            sleep(60)
+        except Exception as error:
+            if iterator['url']:
+                print(1, iterator['url'], iterator.content, error,
+                      sep='\n')
+            elif iterator:
+                print(1, 'not url', iterator,
+                      'not content',  error, sep='\n')
+            else:
+                print(2, error)
     return answer
 
 
