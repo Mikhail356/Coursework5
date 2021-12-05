@@ -50,7 +50,7 @@ def get_summary(cdx_iterator):
         except ConnectionError:
             sleep(60)
         except Exception as error:
-            if iterator['url']:
+            if iterator['url'] and iterator.content:
                 print(1, iterator['url'], iterator.content, error,
                       sep='\n')
             elif iterator:
