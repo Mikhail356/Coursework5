@@ -1,3 +1,7 @@
+""" 
+Rewrite URLs from mass_media.txt to 
+alldb.sqlite3 in table with name queue
+"""
 import sqlite3
 con = sqlite3.connect('alldb.sqlite3')
 cur = con.cursor()
