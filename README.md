@@ -2,6 +2,7 @@
 My coursework that was written on 5 course faculty of Mechanics and Mathematics.
 
 Current theme: "Search for mentions of persons and scientific topics in the news to identify possible conflicts of interest during the examination."
+
 In russian: "Поиск упоминаний персон и научных тематик в новостях для выявления возможного конфликта интересов при экспертизе."
 
 TO DO list:
