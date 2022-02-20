@@ -8,7 +8,7 @@ In russian: "Поиск упоминаний персон и научных те
 TO DO list:
 1. Async/Await (later...)
 2. ~~Profiling (pyspy)~~
-3. ~~After get a lot volume data on Sergeev (1-3 Gb) check and study ~~ https://github.com/buriy/python-readability
+3. ~~After get a lot volume data on Sergeev (1-3 Gb) check and study~~ https://github.com/buriy/python-readability
 4. Find surname with:
     1. n-grams to eliminate typos
     1. much brunching + stemming name + step (my implementation)
