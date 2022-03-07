@@ -130,7 +130,8 @@ dmypy.json
 
 # My ignore
 data/
-*.txt
+old_version/*
+*.txt*
 *.sqlite3
 *.sql*
-*.vscode/*
+*.vscode*

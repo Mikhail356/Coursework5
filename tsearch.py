@@ -56,7 +56,7 @@ def check_name():
         file.write(json.dumps(ans))
 
 
-check_name()
+# check_name()
 # with sqlite3.connect(NAMEBASE) as connection:
 #     cursor = connection.cursor()
 #     name = cursor.execute(
