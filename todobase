@@ -1,0 +1,24 @@
+CREATE TABLE man(id primary key, lastname, firstname, middlename, expert);
+CREATE TABLE queue(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT,
+    load_started DEFAULT NULL,
+    load_complete DEFAULT NULL
+);
+CREATE TABLE content(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    url TEXT,
+    cont TEXT
+);
+CREATE TABLE match (id primary key, cont_id int, name_id int);
+
+attach 'alldb.sqlite3' as db1;
+attach 'db-names_sqlite3.sqlite3' as db2;
+
+insert into queue(id, url, load_started, load_complete) select id, url, load_started, load_complete from db1.queue;
+INSERT INTO content(id, url, cont) SELECT id, url, raw_cont FROM db1.content;
+
+INSERT INTO man(id, lastname, firstname, middlename, expert) SELECT id, lastname, firstname, middlename, expert FROM db2.man;
+
+detach database db1;
+detach database db2;
