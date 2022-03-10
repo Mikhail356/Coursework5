@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # My ignore
-data/
+data_backup/
 old_version/*
 *.txt*
 *.sqlite3
