@@ -10,7 +10,10 @@ CREATE TABLE content(
     url TEXT,
     cont TEXT
 );
-CREATE TABLE match (id primary key, cont_id int, name_id int);
+
+CREATE TABLE nametext (id primary key, cont_id int, name_id int);
+CREATE TABLE namenamecont (id PRIMARY KEY, name1 int, name2 int, cont_id int);
+
 
 attach 'alldb.sqlite3' as db1;
 attach 'db-names_sqlite3.sqlite3' as db2;
