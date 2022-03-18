@@ -1,9 +1,0 @@
-attach 'alldb.sqlite3' as db1;
--- attach 'db-names_sqlite3.sqlite3' as db2;
-CREATE VIRTUAL TABLE texts USING fts5(id, cont);
--- CREATE VIRTUAL TABLE names USING fts5(cont_id, cont, name_id, lastname);
--- INSERT INTO names (name_id, lastname) Select id, lastname from db2.man;
-INSERT INTO texts (id, cont) Select id, raw_cont from db1.content;
-
-
-SELECT texts.id FROM texts WHERE texts.cont MATCH 'Хуснутдинов';

@@ -11,8 +11,8 @@ CREATE TABLE content(
     cont TEXT
 );
 
-CREATE TABLE nametext (id primary key, cont_id int, name_id int);
-CREATE TABLE namenamecont (id PRIMARY KEY, name1 int, name2 int, cont_id int);
+CREATE TABLE nametext (id integer primary key AUTOINCREMENT, cont_id int, name_id int);
+CREATE TABLE namenamecont (id integer PRIMARY KEY AUTOINCREMENT, name1 int, name2 int, cont_id int);
 
 
 attach 'alldb.sqlite3' as db1;
