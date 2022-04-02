@@ -49,23 +49,44 @@ def check_nearby():
         texts_id = cursor.execute(
             "SELECT distinct cont_id from namenamecont"
         ).fetchall()
-        for text_id in texts_id:
-            print(text_id)
+        count = 0
+        for number in tqdm(range(len(texts_id))):
+            text_id = texts_id[number]
             names = cursor.execute(
                 "select id, lastname, firstname, middlename, expert from (select name_id from nametext where nametext.cont_id = ?) as name left join man on man.id = name.name_id;",
                 (text_id[0],)).fetchall()
-            print(names)
+            # print(names)
             text = cursor.execute(
-                "select cont from content where id = ?",
+                "select cont, url from content where id = ?",
                 (text_id[0],)
             ).fetchall()[0]
-            for name in names:
-                print(name)
-                name = name[1][:-1] if name[1][-1] == 'а' else name[1]
-                index = int(text[0].find(name))
-                print(text[0][max(index-50, 0): min(index+50, len(text[0]))])
-            input()
-            input()
+            url = text[1]
+            text = text[0]
+            lowtext = text.lower()
+            for fullname in names:
+                lastname = (
+                    fullname[1][:-1] if fullname[1][-1] == 'а' else fullname[1]
+                )
+                name = (
+                    fullname[2][:-1] if fullname[2][-1] == 'а' else fullname[2]
+                )
+                index1 = int(lowtext.find(lastname.lower()))
+                index2 = int(lowtext[
+                    max(index1-100, 0): min(index1+100, len(text))
+                ].find(name.lower()))
+                if index1 != -1 and index2 != -1:
+                    count += 1
+                    break
+                    # print('TEXT\n', text[:index1])
+                    # print(text[index1:])
+                    # print(fullname)
+                    # print('LASTNAME INDEX', index1)
+                    # print('NAME INDEX', max(index1+index2-100, 0))
+                    # print('LEN TEXT', len(text))
+                    # print('TEXT_ID', text_id)
+                    # print('URL', text[1])
+                    # input()
+        print(count)
 
 
 start_time = time()
