@@ -50,6 +50,7 @@ def check_nearby():
             "SELECT distinct cont_id from namenamecont"
         ).fetchall()
         count = 0
+        intersect = 0
         for number in tqdm(range(len(texts_id))):
             text_id = texts_id[number]
             names = cursor.execute(
@@ -63,6 +64,7 @@ def check_nearby():
             url = text[1]
             text = text[0]
             lowtext = text.lower()
+            intersect = 0
             for fullname in names:
                 lastname = (
                     fullname[1][:-1] if fullname[1][-1] == 'а' else fullname[1]
@@ -75,8 +77,11 @@ def check_nearby():
                     max(index1-100, 0): min(index1+100, len(text))
                 ].find(name.lower()))
                 if index1 != -1 and index2 != -1:
-                    count += 1
-                    break
+                    intersect += 1
+                    if intersect == 2:
+                        count += 1
+                        intersect = 0
+                        break
                     # print('TEXT\n', text[:index1])
                     # print(text[index1:])
                     # print(fullname)
