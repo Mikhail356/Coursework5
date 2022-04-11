@@ -7,9 +7,9 @@ DATABASE = 'database.sqlite3'
 
 def base_connection_with_names():
     """
-    Creates and fills in tables that take into account 
-    the relationship between surnames from the "man" table 
-    and the contents from the "content" table, as well as 
+    Creates and fills in tables that take into account
+    the relationship between surnames from the "man" table
+    and the contents from the "content" table, as well as
     between surnames that exist in the same text from "content".
 
     All of the above is performed in the database DATABASE.
@@ -51,19 +51,25 @@ def check_nearby():
         ).fetchall()
         count = 0
         intersect = 0
+        listtext = []
         for number in tqdm(range(len(texts_id))):
             text_id = texts_id[number]
             names = cursor.execute(
                 "select id, lastname, firstname, middlename, expert from (select name_id from nametext where nametext.cont_id = ?) as name left join man on man.id = name.name_id;",
                 (text_id[0],)).fetchall()
-            # print(names)
+            # print(names, text_id)
+            # input()
             text = cursor.execute(
                 "select cont, url from content where id = ?",
                 (text_id[0],)
-            ).fetchall()[0]
-            url = text[1]
-            text = text[0]
+            ).fetchall()
+            # print(text[0][1])
+            url = text[0][1]
+            text = text[0][0]
+            # print(url)
+            # input()
             lowtext = text.lower()
+            # intersect need to check that 2 different names exists in text
             intersect = 0
             for fullname in names:
                 lastname = (
@@ -72,25 +78,43 @@ def check_nearby():
                 name = (
                     fullname[2][:-1] if fullname[2][-1] == 'а' else fullname[2]
                 )
+                lowname = name.lower()
                 index1 = int(lowtext.find(lastname.lower()))
-                index2 = int(lowtext[
-                    max(index1-100, 0): min(index1+100, len(text))
-                ].find(name.lower()))
-                if index1 != -1 and index2 != -1:
-                    intersect += 1
-                    if intersect == 2:
-                        count += 1
-                        intersect = 0
-                        break
-                    # print('TEXT\n', text[:index1])
-                    # print(text[index1:])
-                    # print(fullname)
-                    # print('LASTNAME INDEX', index1)
-                    # print('NAME INDEX', max(index1+index2-100, 0))
-                    # print('LEN TEXT', len(text))
-                    # print('TEXT_ID', text_id)
-                    # print('URL', text[1])
-                    # input()
+                if index1 != -1:
+                    index2 = max(
+                        int(lowtext[
+                            max(index1-30, 0): index1
+                        ].find(' '+lowname+' ')),
+                        int(lowtext[
+                            index1+len(lowname): min(index1+len(lowname)+30, len(text))
+                        ].find(' '+lowname+' ')))
+
+                    if index2 == -1:
+                        index2 = int(lowtext[
+                            max(index1-10, 0): min(index1+10+len(lastname), len(text))
+                        ].find(lowname[0]+'.'))
+
+                    if index2 != -1:
+                        intersect += 1
+                        if intersect == 2:
+                            count += 1
+                            listtext.append((text, text_id, url))
+                            break
+                        # listname.append((fullname, index1, index2))
+
+            # for tmp in listname:
+            #     print('TEXT\n', text[:index1])
+            #     print('\n\n fffffffffff\n\n')
+            #     print(text[index1:])
+            #     print(fullname)
+            #     print('LASTNAME INDEX', index1)
+            #     print('NAME INDEX', max(index1+index2-100, 0))
+            #     print('LEN TEXT', len(text))
+            #     print('TEXT_ID', text_id)
+            #     print('URL', url)
+            #     input()
+        for pair in listtext:
+            print(pair[0][:100], pair[2])
         print(count)
 
 
