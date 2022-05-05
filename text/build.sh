@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cat intro.md tech.md math.md real.md end.md l_list_.md > _coursework_pandoc.md
+cat intro.md tech.md math.md real.md end.md l_list.md > _coursework_pandoc.md
 # cat intro.md tech.md math.md real.md end.md l_list.md > _coursework_pandoc.md
 #cat intro.md > _coursework_pandoc.md
 #https://github.com/citation-style-language/schema/blob/master/schemas/input/csl-data.json
