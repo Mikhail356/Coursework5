@@ -1,0 +1,122 @@
+---
+references:
+- id: abukausarWebCrawlerReview2013
+  abstract: >-
+    Information Retrieval deals with searching and retrieving information within
+    the documents and it also searches the online databases and internet. Web
+    crawler is defined as a program or software which traverses the Web and
+    downloads web documents in a methodical, automated manner. Based on the type
+    of knowledge, web crawler is usually divided in three types of crawling
+    techniques: General Purpose Crawling, Focused crawling and Distributed
+    Crawling. In this paper, the applicability of Web Crawler in the field of
+    web search and a review on Web Crawler to different problem domains in web
+    search is discussed.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 5
+  author:
+    - family: AbuKausar
+      given: Md.
+    - family: S. Dhaka
+      given: V.
+    - family: Kumar Singh
+      given: Sanjeev
+  citation-key: abukausarWebCrawlerReview2013
+  container-title: International Journal of Computer Applications
+  container-title-short: IJCA
+  DOI: 10.5120/10440-5125
+  ISSN: '09758887'
+  issue: '2'
+  issued:
+    - year: 2013
+      month: 2
+      day: 15
+  language: en
+  page: 31-36
+  source: DOI.org (Crossref)
+  title: 'Web Crawler: A Review'
+  title-short: Web Crawler
+  type: article-journal
+  URL: http://research.ijcaonline.org/volume63/number2/pxc3885125.pdf
+  volume: '63'
+
+- id: choEvolutionWebImplications
+  abstract: >-
+    In this paper we study how to build an eﬀective incremental crawler. The
+    crawler selectively and incrementally updates its index and/or local
+    collection of web pages, instead of periodically refreshing the collection
+    in batch mode. The incremental crawler can improve the “freshness” of the
+    collection signiﬁcantly and bring in new pages in a more timely manner. We
+    ﬁrst present results from an experiment conducted on more than half million
+    web pages over 4 months, to estimate how web pages evolve over time. Based
+    on these experimental results, we compare various design choices for an
+    incremental crawler and discuss their trade-oﬀs. We propose an architecture
+    for the incremental crawler, which combines the best design choices.
+  author:
+    - family: Cho
+      given: Junghoo
+    - family: Garcia-Molina
+      given: Hector
+  citation-key: choEvolutionWebImplications
+  language: en
+  page: '18'
+  source: Zotero
+  title: The Evolution of the Web and Implications for an Incremental Crawler
+  type: article-journal
+
+- id: ParallelCrawlers
+  accessed:
+    - year: 2022
+      month: 5
+      day: 5
+  citation-key: ParallelCrawlers
+  title: Parallel Crawlers
+  type: webpage
+  URL: https://ra.ethz.ch/CDstore/www2002/refereed/108/index.html
+
+- id: >-
+    wirelesscommunicationandcomputingstudentcsedepartmentg.h.raisoniinstituteofengineeringandtechnologyforwomennagpurindiaStudyWebCrawler2014
+  abstract: >-
+    Due to the current size of the Web and its dynamic nature, building an
+    efficient search mechanism is very important. A vast number of web pages are
+    continually being added every day, and information is constantly changing.
+    Search engines are used to extract valuable Information from the internet.
+    Web crawlers are the principal part of search engine, is a computer program
+    or software that browses the World Wide Web in a methodical, automated
+    manner or in an orderly fashion. It is an essential method for collecting
+    data on, and keeping in touch with the rapidly increasing Internet. This
+    Paper briefly reviews the concepts of web crawler, its architecture and its
+    various types.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 5
+  author:
+    - literal: >-
+        Wireless Communication and Computing) student, CSE Department, G.H.
+        Raisoni Institute of Engineering and Technology for Women, Nagpur, India
+    - family: Udapure
+      given: Trupti V.
+    - family: Kale
+      given: Ravindra D.
+    - family: Dharmik
+      given: Rajesh C.
+  citation-key: >-
+    wirelesscommunicationandcomputingstudentcsedepartmentg.h.raisoniinstituteofengineeringandtechnologyforwomennagpurindiaStudyWebCrawler2014
+  container-title: IOSR Journal of Computer Engineering
+  container-title-short: IOSRJCE
+  DOI: 10.9790/0661-16160105
+  ISSN: 22788727, 22780661
+  issue: '1'
+  issued:
+    - year: 2014
+  language: en
+  page: 01-05
+  source: DOI.org (Crossref)
+  title: Study of Web Crawler and its Different Types
+  type: article-journal
+  URL: >-
+    http://www.iosrjournals.org/iosr-jce/papers/Vol16-issue1/Version-6/A016160105.pdf
+  volume: '16'
+...
