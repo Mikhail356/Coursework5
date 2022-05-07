@@ -5,6 +5,16 @@ Current theme: "Search for mentions of persons and scientific topics in the news
 
 In russian: "Поиск упоминаний персон и научных тематик в новостях для выявления возможного конфликта интересов при экспертизе."
 
+### Курсовая
+находится в папке [cw](https://github.com/Mikhail356/Coursework5/tree/master/text)
+#### Содержимое:
+1. __Введение__ - [intro.md](https://github.com/Mikhail356/Coursework5/blob/master/text/intro.md)
+1. __Способы поиска нужных новостных публикаций__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
+1. __Способы хранения нужных данных локально__ - [loader_structure.md](https://github.com/Mikhail356/Coursework5/blob/master/text/loader_structure.md)
+1. __Способы поиска людей в новостных записях__ - [search.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
+1. __Заключение__ - [end.md](https://github.com/Mikhail356/Coursework5/blob/master/text/end.md)
+1. __Список литературы__ - [bibliography.yaml](https://github.com/Mikhail356/Coursework5/blob/master/text/bibliography.yaml)
+
 TO DO list:
 1. Async/Await (later...)
 2. ~~Profiling (pyspy)~~
@@ -18,13 +28,3 @@ TO DO list:
 6. ~~Local caching in data base sqlite~~
 
 ... and so on
-
-### Курсовая
-находится в папке [cw](https://github.com/Mikhail356/Coursework5/tree/master/text)
-#### Содержимое:
-1. __Введение__ - [intro.md](https://github.com/Mikhail356/Coursework5/blob/master/text/intro.md)
-1. __Постановка задачи__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
-1. __Составная часть 1__ - [loader_structure.md](https://github.com/Mikhail356/Coursework5/blob/master/text/loader_structure.md)
-1. __Составная часть 2__ - [search.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
-1. __Заключение__ - [end.md](https://github.com/Mikhail356/Coursework5/blob/master/text/end.md)
-1. __Список литературы__ - [bibliography.yaml](https://github.com/Mikhail356/Coursework5/blob/master/text/bibliography.yaml)
