@@ -6,7 +6,7 @@ Current theme: "Search for mentions of persons and scientific topics in the news
 In russian: "Поиск упоминаний персон и научных тематик в новостях для выявления возможного конфликта интересов при экспертизе."
 
 ### Курсовая
-находится в папке [cw](https://github.com/Mikhail356/Coursework5/tree/master/text)
+находится в папке [text](https://github.com/Mikhail356/Coursework5/tree/master/text)
 #### Содержимое:
 1. __Введение__ - [intro.md](https://github.com/Mikhail356/Coursework5/blob/master/text/intro.md)
 1. __Способы поиска нужных новостных публикаций__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
