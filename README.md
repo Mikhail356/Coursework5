@@ -23,8 +23,8 @@ TO DO list:
 находится в папке [cw](https://github.com/Mikhail356/Coursework5/tree/master/text)
 #### Содержимое:
 1. __Введение__ - [intro.md](https://github.com/Mikhail356/Coursework5/blob/master/text/intro.md)
-1. __Постановка задачи__ - [tech.md](https://github.com/Mikhail356/Coursework5/blob/master/text/task.md)
-1. __Составная часть 1__ - [math.md](https://github.com/Mikhail356/Coursework5/blob/master/text/math.md)
-1. __Составная часть 2__ - [real.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
+1. __Постановка задачи__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
+1. __Составная часть 1__ - [loader_structure.md](https://github.com/Mikhail356/Coursework5/blob/master/text/loader_structure.md)
+1. __Составная часть 2__ - [search.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
 1. __Заключение__ - [end.md](https://github.com/Mikhail356/Coursework5/blob/master/text/end.md)
 1. __Список литературы__ - [bibliography.yaml](https://github.com/Mikhail356/Coursework5/blob/master/text/bibliography.yaml)

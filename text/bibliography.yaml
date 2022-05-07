@@ -41,6 +41,137 @@ references:
   URL: http://research.ijcaonline.org/volume63/number2/pxc3885125.pdf
   volume: '63'
 
+- id: batsakisImprovingPerformanceFocused2009
+  abstract: >-
+    This work addresses issues related to the design and implementation of
+    focused crawlers. Several variants of state-of-the-art crawlers relying on
+    web page content and link information for estimating the relevance of web
+    pages to a given topic are proposed. Particular emphasis is given to
+    crawlers capable of learning not only the content of relevant pages (as
+    classic crawlers do) but also paths leading to relevant pages. A novel
+    learning crawler inspired by a previously proposed Hidden Markov Model (HMM)
+    crawler is described as well. The crawlers have been implemented using the
+    same baseline implementation (only the priority assignment function differs
+    in each crawler) providing an unbiased evaluation framework for a
+    comparative analysis of their performance. All crawlers achieve their
+    maximum performance when a combination of web page content and (link) anchor
+    text is used for assigning download priorities to web pages. Furthermore,
+    the new HMM crawler improved the performance of the original HMM crawler and
+    also outperforms classic focused crawlers in searching for specialized
+    topics.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 6
+  author:
+    - family: Batsakis
+      given: Sotiris
+    - family: Petrakis
+      given: Euripides G.M.
+    - family: Milios
+      given: Evangelos
+  citation-key: batsakisImprovingPerformanceFocused2009
+  container-title: Data & Knowledge Engineering
+  container-title-short: Data & Knowledge Engineering
+  DOI: 10.1016/j.datak.2009.04.002
+  ISSN: 0169023X
+  issue: '10'
+  issued:
+    - year: 2009
+      month: 10
+  language: en
+  page: 1001-1013
+  source: DOI.org (Crossref)
+  title: Improving the performance of focused web crawlers
+  type: article-journal
+  URL: https://linkinghub.elsevier.com/retrieve/pii/S0169023X0900055X
+  volume: '68'
+
+- id: boldiUbiCrawlerScalableFully2004
+  abstract: >-
+    We report our experience in implementing UbiCrawler, a scalable distributed
+    Web crawler, using the Java programming language. The main features of
+    UbiCrawler are platform independence, linear scalability, graceful
+    degradation in the presence of faults, a very effective assignment function
+    (based on consistent hashing) for partitioning the domain to crawl, and more
+    in general the complete decentralization of every task. The necessity of
+    handling very large sets of data has highlighted some limitations of the
+    Java APIs, which prompted the authors to partially reimplement them.
+    Copyright c 2004 John Wiley & Sons, Ltd.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 6
+  author:
+    - family: Boldi
+      given: Paolo
+    - family: Codenotti
+      given: Bruno
+    - family: Santini
+      given: Massimo
+    - family: Vigna
+      given: Sebastiano
+  citation-key: boldiUbiCrawlerScalableFully2004
+  container-title: 'Software: Practice and Experience'
+  container-title-short: 'Softw: Pract. Exper.'
+  DOI: 10.1002/spe.587
+  ISSN: 0038-0644, 1097-024X
+  issue: '8'
+  issued:
+    - year: 2004
+      month: 7
+      day: 10
+  language: en
+  page: 711-726
+  source: DOI.org (Crossref)
+  title: 'UbiCrawler: a scalable fully distributed Web crawler'
+  title-short: UbiCrawler
+  type: article-journal
+  URL: https://onlinelibrary.wiley.com/doi/10.1002/spe.587
+  volume: '34'
+
+- id: BRIN1998107
+  abstract: >-
+    In this paper, we present Google, a prototype of a large-scale search engine
+    which makes heavy use of the structure present in hypertext. Google is
+    designed to crawl and index the Web efficiently and produce much more
+    satisfying search results than existing systems. The prototype with a full
+    text and hyperlink database of at least 24 million pages is available at
+    http://google.stanford.edu/ To engineer a search engine is a challenging
+    task. Search engines index tens to hundreds of millions of Web pages
+    involving a comparable number of distinct terms. They answer tens of
+    millions of queries every day. Despite the importance of large-scale search
+    engines on the Web, very little academic research has been done on them.
+    Furthermore, due to rapid advance in technology and Web proliferation,
+    creating a Web search engine today is very different from three years ago.
+    This paper provides an in-depth description of our large-scale Web search
+    engine — the first such detailed public description we know of to date.
+    Apart from the problems of scaling traditional search techniques to data of
+    this magnitude, there are new technical challenges involved with using the
+    additional information present in hypertext to produce better search
+    results. This paper addresses this question of how to build a practical
+    large-scale system which can exploit the additional information present in
+    hypertext. Also we look at the problem of how to effectively deal with
+    uncontrolled hypertext collections where anyone can publish anything they
+    want.
+  author:
+    - family: Brin
+      given: Sergey
+    - family: Page
+      given: Lawrence
+  citation-key: BRIN1998107
+  container-title: Computer Networks and ISDN Systems
+  DOI: https://doi.org/10.1016/S0169-7552(98)00110-X
+  ISSN: 0169-7552
+  issue: '1'
+  issued:
+    - year: 1998
+  page: 107-117
+  title: The anatomy of a large-scale hypertextual Web search engine
+  type: article-journal
+  URL: https://www.sciencedirect.com/science/article/pii/S016975529800110X
+  volume: '30'
+
 - id: choEvolutionWebImplications
   abstract: >-
     In this paper we study how to build an eﬀective incremental crawler. The
