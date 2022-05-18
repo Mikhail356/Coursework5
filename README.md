@@ -9,9 +9,9 @@ In russian: "Поиск упоминаний персон и научных те
 находится в папке [text](https://github.com/Mikhail356/Coursework5/tree/master/text)
 #### Содержимое:
 1. __Введение__ - [intro.md](https://github.com/Mikhail356/Coursework5/blob/master/text/intro.md)
-1. __Способы поиска нужных новостных публикаций__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
-1. __Способы хранения нужных данных локально__ - [loader_structure.md](https://github.com/Mikhail356/Coursework5/blob/master/text/loader_structure.md)
-1. __Способы поиска людей в новостных записях__ - [search.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
+1. __Методы сбора данных__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
+1. __Структура хранения данных__ - [loader_structure.md](https://github.com/Mikhail356/Coursework5/blob/master/text/loader_structure.md)
+1. __Поиск упоминаний персон__ - [search.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
 1. __Заключение__ - [end.md](https://github.com/Mikhail356/Coursework5/blob/master/text/end.md)
 1. __Список литературы__ - [bibliography.yaml](https://github.com/Mikhail356/Coursework5/blob/master/text/bibliography.yaml)
 
