@@ -41,6 +41,48 @@ references:
   URL: http://research.ijcaonline.org/volume63/number2/pxc3885125.pdf
   volume: '63'
 
+- id: balakrishnanStemmingLemmatizationComparison2014
+  abstract: >-
+    The current study proposes to compare document retrieval precision
+    performances based on language modeling techniques, particularly stemming
+    and lemmatization. Stemming is a procedure to reduce all words with the same
+    stem to a common form whereas lemmatization removes inflectional endings and
+    returns the base or dictionary form of a word. Comparisons were also made
+    between these two techniques with a baseline ranking algorithm (i.e. with no
+    language processing). A search engine was developed and the algorithms were
+    tested based on a test collection. Both mean average precisions and
+    histograms indicate stemming and lemmatization to outperform the baseline
+    algorithm. As for the language modeling techniques, lemmatization produced
+    better precision compared to stemming, however the differences are
+    insignificant. Overall the findings suggest that language modeling
+    techniques improves document retrieval, with lemmatization technique
+    producing the best result.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 20
+  author:
+    - family: Balakrishnan
+      given: Vimala
+    - family: Ethel
+      given: Lloyd-Yemoh
+  citation-key: balakrishnanStemmingLemmatizationComparison2014
+  container-title: Lecture Notes on Software Engineering
+  container-title-short: LNSE
+  DOI: 10.7763/LNSE.2014.V2.134
+  ISSN: '23013559'
+  issue: '3'
+  issued:
+    - year: 2014
+  language: en
+  page: 262-267
+  source: DOI.org (Crossref)
+  title: 'Stemming and Lemmatization: A Comparison of Retrieval Performances'
+  title-short: Stemming and Lemmatization
+  type: article-journal
+  URL: http://www.lnse.org/show-34-165-1.html
+  volume: '2'
+
 - id: batsakisImprovingPerformanceFocused2009
   abstract: >-
     This work addresses issues related to the design and implementation of
@@ -368,6 +410,106 @@ references:
     https://journalofcloudcomputing.springeropen.com/articles/10.1186/2192-113X-2-22
   volume: '2'
 
+- id: hoganKnowledgeGraphs2022
+  abstract: >-
+    In this paper we provide a comprehensive introduction to knowledge graphs,
+    which have recently garnered significant attention from both industry and
+    academia in scenarios that require exploiting diverse, dynamic, large-scale
+    collections of data. After some opening remarks, we motivate and contrast
+    various graph-based data models and query languages that are used for
+    knowledge graphs. We discuss the roles of schema, identity, and context in
+    knowledge graphs. We explain how knowledge can be represented and extracted
+    using a combination of deductive and inductive techniques. We summarise
+    methods for the creation, enrichment, quality assessment, refinement, and
+    publication of knowledge graphs. We provide an overview of prominent open
+    knowledge graphs and enterprise knowledge graphs, their applications, and
+    how they use the aforementioned techniques. We conclude with high-level
+    future research directions for knowledge graphs.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 20
+  author:
+    - family: Hogan
+      given: Aidan
+    - family: Blomqvist
+      given: Eva
+    - family: Cochez
+      given: Michael
+    - family: Amato
+      given: Claudia
+      non-dropping-particle: d'
+    - family: Melo
+      given: Gerard
+      non-dropping-particle: de
+    - family: Gutierrez
+      given: Claudio
+    - family: Gayo
+      given: José Emilio Labra
+    - family: Kirrane
+      given: Sabrina
+    - family: Neumaier
+      given: Sebastian
+    - family: Polleres
+      given: Axel
+    - family: Navigli
+      given: Roberto
+    - family: Ngomo
+      given: Axel-Cyrille Ngonga
+    - family: Rashid
+      given: Sabbir M.
+    - family: Rula
+      given: Anisa
+    - family: Schmelzeisen
+      given: Lukas
+    - family: Sequeda
+      given: Juan
+    - family: Staab
+      given: Steffen
+    - family: Zimmermann
+      given: Antoine
+  citation-key: hoganKnowledgeGraphs2022
+  container-title: ACM Computing Surveys
+  container-title-short: ACM Comput. Surv.
+  DOI: 10.1145/3447772
+  ISSN: 0360-0300, 1557-7341
+  issue: '4'
+  issued:
+    - year: 2022
+      month: 5
+      day: 31
+  page: 1-37
+  source: arXiv.org
+  title: Knowledge Graphs
+  type: article-journal
+  URL: http://arxiv.org/abs/2003.02320
+  volume: '54'
+
+- id: jivaniComparativeStudyStemming2011
+  abstract: >-
+    Stemming is a pre-processing step in Text Mining applications as well as a
+    very common requirement of Natural Language processing functions. In fact it
+    is very important in most of the Information Retrieval systems. The main
+    purpose of stemming is to reduce different grammatical forms / word forms of
+    a word like its noun, adjective, verb, adverb etc. to its root form. We can
+    say that the goal of stemming is to reduce inflectional forms and sometimes
+    derivationally related forms of a word to a common base form. In this paper
+    we have discussed different methods of stemming and their comparisons in
+    terms of usage, advantages as well as limitations. The basic difference
+    between stemming and lemmatization is also discussed.
+  author:
+    - family: Jivani
+      given: Anjali Ganesh
+  citation-key: jivaniComparativeStudyStemming2011
+  issued:
+    - year: 2011
+  language: en
+  page: '9'
+  source: Zotero
+  title: A Comparative Study of Stemming Algorithms
+  type: article-journal
+  volume: '2'
+
 - id: meltonSQLLanguageSummary1996
   accessed:
     - year: 2022
@@ -402,6 +544,84 @@ references:
   title: Parallel Crawlers
   type: webpage
   URL: https://ra.ethz.ch/CDstore/www2002/refereed/108/index.html
+
+- id: ramosUsingTFIDFDetermine
+  abstract: >-
+    In this paper, we examine the results of applying Term Frequency Inverse
+    Document Frequency (TF-IDF) to determine what words in a corpus of documents
+    might be more favorable to use in a query. As the term implies, TF-IDF
+    calculates values for each word in a document through an inverse proportion
+    of the frequency of the word in a particular document to the percentage of
+    documents the word appears in. Words with high TF-IDF numbers imply a strong
+    relationship with the document they appear in, suggesting that if that word
+    were to appear in a query, the document could be of interest to the user. We
+    provide evidence that this simple algorithm efficiently categorizes relevant
+    words that can enhance query retrieval. 1.
+  author:
+    - family: Ramos
+      given: Juan
+  citation-key: ramosUsingTFIDFDetermine
+  source: CiteSeer
+  title: Using TF-IDF to Determine Word Relevance in Document Queries
+  type: document
+
+- id: saltonInformationProcessingManagement1988
+  author:
+    - family: Salton
+      given: Gerard
+    - family: Buckley
+      given: Christopher
+  citation-key: saltonInformationProcessingManagement1988
+  container-title: Term-weighting approaches in automatic text retrieval
+  issue: '5'
+  issued:
+    - year: 1988
+  page: 513--523
+  title: Information processing \& management
+  type: article-journal
+  volume: '24'
+
+- id: SnowballLanguageStemming
+  accessed:
+    - year: 2022
+      month: 5
+      day: 20
+  citation-key: SnowballLanguageStemming
+  title: 'Snowball: A language for stemming algorithms'
+  type: webpage
+  URL: http://snowball.tartarus.org/texts/introduction.html
+
+- id: willettPorterStemmingAlgorithm2006
+  abstract: >-
+    General review Purpose: In 1980, Porter presented a simple algorithm for
+    stemming English language words. This paper summarises the main features of
+    the algorithm, and highlights its role not just in modern information
+    retrieval research, but also in a range of related subject domains.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 20
+  author:
+    - family: Willett
+      given: Peter
+  citation-key: willettPorterStemmingAlgorithm2006
+  container-title: Program
+  container-title-short: Program
+  DOI: 10.1108/00330330610681295
+  ISSN: 0033-0337, 0033-0337
+  issue: '3'
+  issued:
+    - year: 2006
+      month: 7
+  language: en
+  page: 219-223
+  source: DOI.org (Crossref)
+  title: 'The Porter stemming algorithm: then and now'
+  title-short: The Porter stemming algorithm
+  type: article-journal
+  URL: >-
+    https://www.emerald.com/insight/content/doi/10.1108/00330330610681295/full/html
+  volume: '40'
 
 - id: >-
     wirelesscommunicationandcomputingstudentcsedepartmentg.h.raisoniinstituteofengineeringandtechnologyforwomennagpurindiaStudyWebCrawler2014
