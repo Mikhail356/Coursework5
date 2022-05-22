@@ -350,6 +350,42 @@ references:
   title: The Evolution of the Web and Implications for an Incremental Crawler
   type: article-journal
 
+- id: farberWhichKnowledgeGraph2018
+  abstract: >-
+    In recent years, DBpedia, Freebase, OpenCyc, Wikidata, and YAGO have been
+    published as noteworthy large, cross-domain, and freely available knowledge
+    graphs. Although extensively in use, these knowledge graphs are hard to
+    compare against each other in a given setting. Thus, it is a challenge for
+    researchers and developers to pick the best knowledge graph for their
+    individual needs. In our recent survey, we devised and applied data quality
+    criteria to the above-mentioned knowledge graphs. Furthermore, we proposed a
+    framework for finding the most suitable knowledge graph for a given setting.
+    With this paper we intend to ease the access to our in-depth survey by
+    presenting simplified rules that map individual data quality requirements to
+    specific knowledge graphs. However, this paper does not intend to replace
+    our previously introduced decision-support framework. For an informed
+    decision on which KG is best for you we still refer to our in-depth survey.
+  accessed:
+    - year: 2022
+      month: 5
+      day: 21
+  author:
+    - family: Färber
+      given: Michael
+    - family: Rettinger
+      given: Achim
+  citation-key: farberWhichKnowledgeGraph2018
+  issued:
+    - year: 2018
+      month: 9
+      day: 28
+  number: arXiv:1809.11099
+  publisher: arXiv
+  source: arXiv.org
+  title: Which Knowledge Graph Is Best for Me?
+  type: article
+  URL: http://arxiv.org/abs/1809.11099
+
 - id: grolingerDataManagementCloud2013
   abstract: >-
     Advances in Web technology and the proliferation of mobile devices and
@@ -591,6 +627,26 @@ references:
   type: webpage
   URL: http://snowball.tartarus.org/texts/introduction.html
 
+- id: SQLiteFTS5Extension
+  accessed:
+    - year: 2022
+      month: 5
+      day: 22
+  citation-key: SQLiteFTS5Extension
+  title: SQLite FTS5 Extension
+  type: webpage
+  URL: https://www.sqlite.org/fts5.html
+
+- id: Wikidata
+  accessed:
+    - year: 2022
+      month: 5
+      day: 21
+  citation-key: Wikidata
+  title: Wikidata
+  type: webpage
+  URL: https://www.wikidata.org/wiki/Wikidata:Main_Page
+
 - id: willettPorterStemmingAlgorithm2006
   abstract: >-
     General review Purpose: In 1980, Porter presented a simple algorithm for
@@ -667,6 +723,17 @@ references:
   URL: >-
     http://www.iosrjournals.org/iosr-jce/papers/Vol16-issue1/Version-6/A016160105.pdf
   volume: '16'
+
+- id: YouReReady
+  accessed:
+    - year: 2022
+      month: 5
+      day: 21
+  citation-key: YouReReady
+  language: en-US
+  title: So you’re ready to get started. – Common Crawl
+  type: post-weblog
+  URL: https://commoncrawl.org/the-data/get-started/
 
 - id: zobelInvertedFilesText2006
   abstract: >-
