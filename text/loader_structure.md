@@ -11,7 +11,10 @@
 1. Пакетами, которые позволяет хранящий ресурс, данные загружаются в таблицу content.
 1. Текст отправляется в колонку raw_cont, а адрес страницы в колонку url
 
-Структура таблиц:
+## Схема работы загрузчика
+![](diagrams/Content_filling)
+
+## Структура таблиц:
 ```SQL 
 TABLE man(id primary key, lastname, firstname, middlename, expert);
 TABLE queue(
