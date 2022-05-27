@@ -118,6 +118,9 @@ def check_nearby():
         print(count)
 
 
-start_time = time()
-check_nearby()
-print("--- %s seconds ---" % (time() - start_time))
+if __name__ == '__main__':
+    base_connection_with_names()
+
+# start_time = time()
+# check_nearby()
+# print("--- %s seconds ---" % (time() - start_time))

@@ -1,3 +1,7 @@
+% use to create finala database.sqlite3
+% and merge in it 2 bases:
+% 'alldb.sqlite3' - results of loading from CommonCrawl
+% 'db-names_sqlite3.sqlite3' - names and organisations
 CREATE TABLE man(id primary key, lastname, firstname, middlename, expert);
 CREATE TABLE queue(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,12 +15,17 @@ CREATE TABLE content(
     cont TEXT
 );
 
-CREATE TABLE nametext (id integer primary key AUTOINCREMENT, cont_id int, name_id int);
-CREATE TABLE namenamecont (id integer PRIMARY KEY AUTOINCREMENT, name1 int, name2 int, cont_id int);
+attach 'alldb.sqlite3' as db1;
+attach 'db-names_sqlite3.sqlite3' as db2;
 
+INSERT INTO queue(id, url, load_started, load_complete) SELECT id, url, load_started, load_complete from db1.queue;
+INSERT INTO content(id, url, cont) SELECT id, url, raw_cont FROM db1.content;
 
-attach 'db-names_sqlite3.sqlite3' as db1;
-
-INSERT INTO man(id, lastname, firstname, middlename, expert) SELECT id, lastname, firstname, middlename, expert FROM db1.man;
+INSERT INTO man(id, lastname, firstname, middlename, expert) SELECT id, lastname, firstname, middlename, expert FROM db2.man;
 
 detach database db1;
+detach database db2;
+
+
+CREATE TABLE nametext (id integer primary key AUTOINCREMENT, cont_id int, name_id int);
+CREATE TABLE namenamecont (id integer PRIMARY KEY AUTOINCREMENT, name1 int, name2 int, cont_id int);
