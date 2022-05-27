@@ -15,13 +15,8 @@ CREATE TABLE nametext (id integer primary key AUTOINCREMENT, cont_id int, name_i
 CREATE TABLE namenamecont (id integer PRIMARY KEY AUTOINCREMENT, name1 int, name2 int, cont_id int);
 
 
-attach 'alldb.sqlite3' as db1;
-attach 'db-names_sqlite3.sqlite3' as db2;
+attach 'db-names_sqlite3.sqlite3' as db1;
 
-insert into queue(id, url, load_started, load_complete) select id, url, load_started, load_complete from db1.queue;
-INSERT INTO content(id, url, cont) SELECT id, url, raw_cont FROM db1.content;
-
-INSERT INTO man(id, lastname, firstname, middlename, expert) SELECT id, lastname, firstname, middlename, expert FROM db2.man;
+INSERT INTO man(id, lastname, firstname, middlename, expert) SELECT id, lastname, firstname, middlename, expert FROM db1.man;
 
 detach database db1;
-detach database db2;
