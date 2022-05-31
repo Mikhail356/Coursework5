@@ -8,5 +8,5 @@ pandoc --from markdown_github+tex_math_dollars+citations --to latex -o _coursewo
 
 # 3 раза — для корректных ссылок
 lualatex coursework.tex
-lualatex coursework.tex
-lualatex coursework.tex
+# lualatex coursework.tex
+# lualatex coursework.tex
