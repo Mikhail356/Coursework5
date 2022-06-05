@@ -12,6 +12,7 @@ In russian: "Поиск упоминаний персон и научных те
 
 #### Содержимое:
 1. __Введение__ - [intro.md](https://github.com/Mikhail356/Coursework5/blob/master/text/intro.md)
+1. __Известные результаты__ [famous.md](https://github.com/Mikhail356/Coursework5/blob/master/text/famous.md)
 1. __Методы сбора данных__ - [c_crawl.md](https://github.com/Mikhail356/Coursework5/blob/master/text/c_crawl.md)
 1. __Структура хранения данных__ - [loader_structure.md](https://github.com/Mikhail356/Coursework5/blob/master/text/loader_structure.md)
 1. __Поиск упоминаний персон__ - [search.md](https://github.com/Mikhail356/Coursework5/blob/master/text/real.md)
